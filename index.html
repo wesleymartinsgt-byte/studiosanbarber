@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio SanBarber | Barbearia e Beleza</title>
+<meta name="description" content="Studio SanBarber: corte, barba, sobrancelha e tratamentos capilares. Agende pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#14110f;--bg2:#1d1916;--ouro:#c9a46a;--ouro2:#f0d49b;--neon:#ffd36b;--texto:#f3ece2;--suave:#b9ad9c;--raio:20px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--texto);line-height:1.6;overflow-x:hidden}
+h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.1}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1150px;margin:0 auto;padding:0 22px}
+section{padding:90px 0;scroll-margin-top:64px}
+.etiqueta{color:var(--ouro);letter-spacing:.25em;text-transform:uppercase;font-size:.8rem;font-weight:700}
+h2{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:900;margin:10px 0 16px}
+h2 em,h1 em{font-style:italic;background:linear-gradient(90deg,var(--ouro),var(--ouro2),var(--ouro));-webkit-background-clip:text;background-clip:text;color:transparent}
+.texto{color:var(--suave);max-width:520px;font-size:1.05rem}
+.btn{display:inline-block;padding:16px 32px;border-radius:999px;font-weight:700;font-size:1rem;border:2px solid var(--ouro);cursor:pointer;font-family:inherit;transition:.25s}
+.btn-ouro{background:linear-gradient(135deg,var(--ouro),var(--ouro2));color:#14110f;box-shadow:0 0 30px rgba(201,164,106,.35)}
+.btn-ouro:hover{transform:translateY(-2px);box-shadow:0 0 45px rgba(240,212,155,.55)}
+.btn-borda{background:transparent;color:var(--ouro)}
+.btn-borda:hover{background:rgba(201,164,106,.15)}
+
+/* LOGO (emblema + nome em duas linhas) */
+.marca{display:inline-flex;align-items:center;gap:.5em;font-family:'Playfair Display',serif;color:var(--texto)}
+.marca svg{width:2.6em;height:2.6em;color:var(--ouro);flex:none}
+.marca .nome{display:block;line-height:1}
+.marca .t1{display:block;font-size:.78em;font-weight:500;letter-spacing:.02em}
+.marca .t2{display:block;font-size:1.3em;font-weight:500;margin-top:.04em}
+.marca-topo{font-size:.95rem}
+.marca-hero{font-size:clamp(1.3rem,3.4vw,2rem);margin-bottom:6px}
+
+/* ANIMAÇÃO DO LOGO NO DESTAQUE */
+.emb-anim{filter:drop-shadow(0 0 6px rgba(240,212,155,.45))}
+.emb-anim .tr{stroke-dasharray:1;stroke-dashoffset:1;animation:tracar 1.5s ease-out forwards;animation-delay:var(--d,0s)}
+.emb-anim text{opacity:0;animation:surge .8s ease-out forwards;animation-delay:var(--d,0s)}
+.letra{display:inline-block;opacity:0;transform:translateY(.5em);animation:surge .6s ease-out forwards}
+@keyframes tracar{to{stroke-dashoffset:0}}
+@keyframes surge{from{opacity:0;transform:translateY(.5em)}to{opacity:1;transform:none}}
+
+header{position:fixed;top:0;left:0;right:0;z-index:10;background:rgba(20,17,15,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(201,164,106,.2)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.menu{display:flex;gap:26px;font-size:.92rem;color:var(--suave)}
+.menu a:hover{color:var(--ouro)}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:100px 0 60px;overflow:hidden;
+ background:radial-gradient(ellipse at 75% 45%,rgba(201,164,106,.2) 0%,transparent 55%),radial-gradient(ellipse at 10% 90%,#2b2218 0%,var(--bg) 60%)}
+
+/* NEON: se desenha, pulsa, e some em degradê antes da foto */
+.neon{position:absolute;left:0;top:0;width:100%;height:100%;z-index:0;pointer-events:none;
+ -webkit-mask-image:linear-gradient(to right,#000 0%,#000 32%,transparent 58%);
+ mask-image:linear-gradient(to right,#000 0%,#000 32%,transparent 58%)}
+.neon path{fill:none;stroke:var(--neon);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;
+ stroke-dasharray:1;stroke-dashoffset:1;animation:desenha 5s ease-out forwards,pulsa 3.5s ease-in-out 5s infinite;
+ filter:drop-shadow(0 0 6px rgba(255,211,107,.9)) drop-shadow(0 0 18px rgba(255,190,70,.6))}
+@keyframes desenha{to{stroke-dashoffset:0}}
+@keyframes pulsa{0%,100%{opacity:1}50%{opacity:.7}}
+
+.hero .wrap{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.8rem,6vw,4.8rem);font-weight:900;margin:14px 0 20px}
+.acoes{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+
+/* FOTO DELA */
+.foto-hero{position:relative;display:flex;justify-content:center;align-items:center}
+.foto-hero::before{content:"";position:absolute;left:50%;top:50%;width:80%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;
+ background:radial-gradient(circle,rgba(240,212,155,.35) 0%,rgba(201,164,106,.15) 40%,transparent 70%);filter:blur(30px);z-index:0}
+.foto-hero img{position:relative;z-index:1;display:block;width:auto;height:auto;max-width:100%;max-height:78vh;object-fit:contain;
+ opacity:0;animation:entra 2s ease-out .5s forwards;
+ -webkit-mask-image:linear-gradient(to right,transparent 0,#000 7%,#000 93%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 6%,#000 92%,transparent 100%);
+ -webkit-mask-composite:source-in;
+ mask-image:linear-gradient(to right,transparent 0,#000 7%,#000 93%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 6%,#000 92%,transparent 100%);
+ mask-composite:intersect}
+@keyframes entra{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+
+/* FAIXA */
+.faixa{background:linear-gradient(90deg,var(--ouro),var(--ouro2),var(--ouro));color:#14110f;overflow:hidden;white-space:nowrap;padding:16px 0;font-family:'Playfair Display',serif;font-weight:700;font-size:1.25rem}
+.faixa div{display:inline-block;animation:rola 30s linear infinite}
+.faixa span{margin:0 18px;display:inline-flex;align-items:center;gap:30px}
+.faixa svg{width:1.15em;height:1.15em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@keyframes rola{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.alt{background:var(--bg2)}
+.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px;margin-top:40px}
+.card{background:var(--bg);border:1px solid rgba(201,164,106,.2);border-radius:var(--raio);padding:28px 22px;transition:.3s}
+.card .num{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900;color:transparent;-webkit-text-stroke:1px var(--ouro);display:block;margin-bottom:8px}
+.card:hover{border-color:var(--neon);transform:translateY(-6px);box-shadow:0 0 30px rgba(255,211,107,.25)}
+.card h3{font-size:1.25rem;margin-bottom:6px}
+.card p{color:var(--suave);font-size:.9rem;margin-bottom:16px}
+.card a{color:var(--ouro);font-size:.9rem;font-weight:700}
+
+/* CARROSSEL DA GALERIA */
+.carrossel-area{overflow:hidden;margin-top:30px;padding:20px 0}
+.carrossel{position:relative;--w:clamp(230px,62vw,340px);height:calc(var(--w) * 1.25);touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.slide{position:absolute;left:50%;top:0;width:var(--w);height:100%;border-radius:var(--raio);overflow:hidden;background:#1d1916;
+ border:1px solid rgba(201,164,106,.3);cursor:pointer;will-change:transform,opacity;
+ transition:transform 1s cubic-bezier(.22,.8,.25,1),opacity 1s ease,box-shadow 1s ease,border-color 1s ease}
+.slide img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.slide.ativo{border:2px solid var(--ouro);box-shadow:0 0 60px rgba(201,164,106,.4),0 25px 50px rgba(0,0,0,.55)}
+.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,17,15,.35),transparent 40%);pointer-events:none}
+.controles{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:26px}
+.seta{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--ouro);background:transparent;color:var(--ouro);font-size:1.2rem;cursor:pointer;transition:.25s;font-family:inherit}
+.seta:hover{background:var(--ouro);color:#14110f}
+.pontos{display:flex;gap:9px}
+.pontos button{width:9px;height:9px;border-radius:50%;border:0;background:rgba(201,164,106,.3);cursor:pointer;padding:0;transition:.4s}
+.pontos button.on{background:var(--ouro);width:26px;border-radius:6px}
+.centro{text-align:center}
+.centro .texto{margin-left:auto;margin-right:auto}
+.centro .acoes{justify-content:center}
+
+.opcoes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:36px}
+.opcao{padding:30px;border-radius:var(--raio);background:var(--bg);border:1px solid rgba(201,164,106,.2)}
+.opcao h3{font-size:1.3rem;margin-bottom:8px;color:var(--ouro)}
+.opcao p{color:var(--suave);font-size:.95rem}
+.local .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.local iframe{width:100%;height:340px;border:2px solid var(--ouro);border-radius:var(--raio);filter:grayscale(.4)}
+.endereco{margin:18px 0 6px;color:var(--suave)}
+footer{padding:40px 0 100px;text-align:center;color:var(--suave);font-size:.85rem;border-top:1px solid rgba(201,164,106,.2)}
+footer .marca{margin-bottom:14px;font-size:1rem}
+.zap-fixo{position:fixed;right:18px;bottom:18px;z-index:20;padding:14px 24px}
+
+@media(max-width:820px){
+ .menu{display:none}
+ .hero{min-height:auto;padding:90px 0 50px}
+ .hero .wrap,.local .wrap{grid-template-columns:1fr;gap:30px}
+ .foto-hero img{max-width:340px;max-height:none;margin:0 auto}
+ .neon{opacity:.55;-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 40%,transparent 62%);mask-image:linear-gradient(to bottom,#000 0%,#000 40%,transparent 62%)}
+ section{padding:64px 0}
+}
+@media(prefers-reduced-motion:reduce){
+ .neon path,.emb-anim .tr{animation:none;stroke-dashoffset:0}
+ .emb-anim text,.letra{animation:none;opacity:1;transform:none}
+ .faixa div{animation:none}
+ .foto-hero img{animation:none;opacity:1}
+ .slide{transition:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Emblema SB (desenho reutilizável: topo e rodapé) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <symbol id="emblema" viewBox="0 0 100 100">
+  <g fill="none" stroke="currentColor">
+   <circle cx="50" cy="50" r="47" stroke-width="3.4"/>
+   <circle cx="50" cy="50" r="42" stroke-width="1"/>
+   <path d="M16 64 A36 36 0 0 0 80 80" stroke-width=".9"/>
+   <path d="M84 32 A36 36 0 0 0 28 16" stroke-width=".9"/>
+  </g>
+  <text x="27" y="65" font-family="Playfair Display,serif" font-size="48" font-style="italic" font-weight="700" fill="currentColor">S</text>
+  <text x="47" y="67" font-family="Playfair Display,serif" font-size="48" font-weight="700" fill="currentColor">B</text>
+ </symbol>
+</svg>
+
+<header>
+ <div class="wrap nav">
+  <a href="#inicio" class="marca marca-topo" aria-label="Studio SanBarber">
+   <svg><use href="#emblema"/></svg>
+   <span class="nome"><span class="t1">Studio</span><span class="t2">SanBarber</span></span>
+  </a>
+  <nav class="menu">
+   <a href="#servicos">Serviços</a>
+   <a href="#galeria">Galeria</a>
+   <a href="#atendimento">Atendimento</a>
+   <a href="#local">Localização</a>
+  </nav>
+  <a class="btn btn-ouro" style="padding:10px 22px" href="https://wa.me/message/CAFXMBOS5VTBG1" target="_blank" rel="noopener">Agendar</a>
+ </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+ <svg class="neon" viewBox="0 0 1000 700" preserveAspectRatio="none" aria-hidden="true">
+  <path pathLength="1" d="M-20 40 C 120 -20, 260 80, 230 190 S 120 300, 280 360 S 420 520, 520 470 S 640 380, 700 520 S 780 600, 830 500 S 900 430, 960 470 S 1010 520, 1030 500"/>
+ </svg>
+ <div class="wrap">
+  <div class="conteudo">
+   <div class="marca marca-hero">
+    <svg class="emb-anim" viewBox="0 0 100 100" aria-hidden="true">
+     <g fill="none" stroke="currentColor">
+      <circle class="tr" pathLength="1" style="--d:0s" cx="50" cy="50" r="47" stroke-width="3.4"/>
+      <circle class="tr" pathLength="1" style="--d:.35s" cx="50" cy="50" r="42" stroke-width="1"/>
+      <path class="tr" pathLength="1" style="--d:.8s" d="M16 64 A36 36 0 0 0 80 80" stroke-width=".9"/>
+      <path class="tr" pathLength="1" style="--d:1s" d="M84 32 A36 36 0 0 0 28 16" stroke-width=".9"/>
+     </g>
+     <text style="--d:1.3s" x="27" y="65" font-family="Playfair Display,serif" font-size="48" font-style="italic" font-weight="700" fill="currentColor">S</text>
+     <text style="--d:1.6s" x="47" y="67" font-family="Playfair Display,serif" font-size="48" font-weight="700" fill="currentColor">B</text>
+    </svg>
+    <span class="nome">
+     <span class="t1 letras" data-inicio="1.9">Studio</span>
+     <span class="t2 letras" data-inicio="2.4">SanBarber</span>
+    </span>
+   </div>
+   <h1>Estilo que <em>marca</em> presença.</h1>
+   <p class="texto">No Studio SanBarber, você encontra cuidado e atenção em cada detalhe, do corte à barba, em um ambiente acolhedor. Agende seu horário pelo WhatsApp, de forma simples e rápida.</p>
+   <div class="acoes">
+    <a class="btn btn-ouro" href="https://wa.me/message/CAFXMBOS5VTBG1" target="_blank" rel="noopener">Agendar pelo WhatsApp</a>
+    <a class="btn btn-borda" href="#galeria">Ver galeria de cortes</a>
+   </div>
+  </div>
+
+  <div class="foto-hero">
+   <img src="images/dela.jpg" alt="Profissional do Studio SanBarber" onerror="this.remove()">
+  </div>
+ </div>
+</section>
+
+<div class="faixa"><div id="faixa"></div></div>
+
+<section class="alt" id="servicos">
+ <div class="wrap">
+  <p class="etiqueta">Serviços</p>
+  <h2>O que <em>oferecemos</em></h2>
+  <p class="texto">Escolha o serviço e agende direto pelo WhatsApp.</p>
+  <div class="grade" id="grade-servicos"></div>
+ </div>
+</section>
+
+<section id="galeria">
+ <div class="wrap centro">
+  <p class="etiqueta">Galeria</p>
+  <h2>Cortes e <em>resultados</em></h2>
+  <p class="texto">Alguns dos trabalhos feitos aqui no studio. Toque em uma foto para passar.</p>
+ </div>
+ <div class="carrossel-area" id="area-carrossel" style="display:none">
+  <div class="carrossel" id="carrossel" aria-label="Galeria de cortes"></div>
+  <div class="controles">
+   <button class="seta" id="anterior" type="button" aria-label="Foto anterior">←</button>
+   <div class="pontos" id="pontos"></div>
+   <button class="seta" id="proxima" type="button" aria-label="Próxima foto">→</button>
+  </div>
+ </div>
+ <div class="wrap centro">
+  <div class="acoes"><a class="btn btn-borda" href="https://www.instagram.com/sandreannybarber/" target="_blank" rel="noopener">Ver mais no Instagram</a></div>
+ </div>
+</section>
+
+<section class="alt" id="atendimento">
+ <div class="wrap">
+  <p class="etiqueta">Atendimento</p>
+  <h2>Como falar <em>com a gente</em></h2>
+  <div class="opcoes">
+   <div class="opcao"><h3>Agende pelo WhatsApp</h3><p>Escolha o serviço, combine o melhor horário e confirme tudo pelo celular.</p></div>
+   <div class="opcao"><h3>Acompanhe no Instagram</h3><p>Veja novos trabalhos, novidades e o dia a dia do studio.</p></div>
+   <div class="opcao"><h3>Visite o studio</h3><p>Estamos prontos para receber você com todo o cuidado.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="local" id="local">
+ <div class="wrap">
+  <div>
+   <p class="etiqueta">Localização</p>
+   <h2>Venha nos <em>visitar</em></h2>
+   <p class="endereco">Travessa Manoel Ferreira Lima, 155, Liberdade, São Luís - MA, 65037-230</p>
+   <div class="acoes">
+    <a class="btn btn-ouro" href="https://www.google.com/maps/search/?api=1&query=Travessa+Manoel+Ferreira+Lima+155+Liberdade+S%C3%A3o+Lu%C3%ADs+MA" target="_blank" rel="noopener">Abrir no mapa</a>
+    <a class="btn btn-borda" href="https://www.instagram.com/sandreannybarber/" target="_blank" rel="noopener">Instagram</a>
+   </div>
+  </div>
+  <iframe title="Mapa do Studio SanBarber" loading="lazy" src="https://maps.google.com/maps?q=Travessa+Manoel+Ferreira+Lima+155+Liberdade+S%C3%A3o+Lu%C3%ADs+MA&output=embed"></iframe>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="marca">
+  <svg><use href="#emblema"/></svg>
+  <span class="nome"><span class="t1">Studio</span><span class="t2">SanBarber</span></span>
+ </div>
+ <div>© <span id="ano"></span> Studio SanBarber. Todos os direitos reservados.</div>
+</footer>
+
+<a class="btn btn-ouro zap-fixo" href="https://wa.me/message/CAFXMBOS5VTBG1" target="_blank" rel="noopener">WhatsApp</a>
+
+<script>
+const WHATSAPP = "https://wa.me/message/CAFXMBOS5VTBG1";
+
+const servicos = [
+ ["Corte de cabelo","Corte na medida do seu estilo."],
+ ["Barba","Modelagem e acabamento precisos."],
+ ["Sobrancelha","Design natural e alinhado."],
+ ["Depilação nasal","Rápida e confortável."],
+ ["Escova","Fios alinhados e com brilho."],
+ ["Selagem","Redução de volume e frizz."],
+ ["Botox capilar","Maciez e reposição de massa."],
+ ["Luzes","Iluminação com cuidado e técnica."],
+ ["Hidratação","Fios nutridos e macios."]
+];
+
+document.getElementById("grade-servicos").innerHTML = servicos.map(function(s, i){
+ var n = (i + 1 < 10 ? "0" : "") + (i + 1);
+ return '<div class="card"><span class="num">' + n + '</span><h3>' + s[0] + '</h3><p>' + s[1] + '</p><a href="' + WHATSAPP + '" target="_blank" rel="noopener">Agendar →</a></div>';
+}).join("");
+
+/* Faixa com tesoura e navalha */
+var TESOURA = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"/></svg>';
+var NAVALHA = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21l8-8" stroke-width="3.2"/><path d="M11 13L19 5c1.2-1.2 3 .4 2 1.8L16 15z"/></svg>';
+var nomes = servicos.map(function(s, i){
+ return "<span>" + s[0] + (i % 2 === 0 ? TESOURA : NAVALHA) + "</span>";
+}).join("");
+document.getElementById("faixa").innerHTML = nomes + nomes + nomes + nomes;
+
+/* ===== CARROSSEL DA GALERIA ===== */
+(function(){
+ var caminhos = [1,2,3,4,5,6].map(function(i){ return "images/galeria-" + i + ".jpg"; });
+ var carregadas = [], pendentes = caminhos.length;
+
+ caminhos.forEach(function(src, idx){
+  var im = new Image();
+  im.onload = function(){ carregadas[idx] = src; fim(); };
+  im.onerror = function(){ fim(); };
+  im.src = src;
+ });
+
+ function fim(){
+  pendentes--;
+  if (pendentes === 0) iniciar(carregadas.filter(Boolean));
+ }
+
+ function iniciar(fotos){
+  var n = fotos.length;
+  if (!n) return;
+  document.getElementById("area-carrossel").style.display = "block";
+
+  var pista = document.getElementById("carrossel");
+  var pontosEl = document.getElementById("pontos");
+  var atual = 0, timer = null, bloqueiaClique = false;
+
+  var slides = fotos.map(function(src, i){
+   var d = document.createElement("div");
+   d.className = "slide";
+   d.innerHTML = '<img src="' + src + '" alt="Corte realizado no studio ' + (i+1) + '" draggable="false">';
+   d.addEventListener("click", function(){
+    if (bloqueiaClique) return;
+    if (i === atual) ir(atual + 1); else ir(i);
+    reiniciar();
+   });
+   pista.appendChild(d);
+   return d;
+  });
+
+  var pontos = fotos.map(function(_, i){
+   var b = document.createElement("button");
+   b.type = "button"; b.setAttribute("aria-label", "Foto " + (i+1));
+   b.addEventListener("click", function(){ ir(i); reiniciar(); });
+   pontosEl.appendChild(b);
+   return b;
+  });
+
+  function posicionar(primeira){
+   slides.forEach(function(el, i){
+    var d = ((i - atual) % n + n) % n;
+    if (d > n / 2) d -= n;
+    var a = Math.abs(d);
+    var escala = a === 0 ? 1 : (a === 1 ? 0.84 : 0.7);
+    var opac = a === 0 ? 1 : (a === 1 ? 0.55 : (a === 2 ? 0.25 : 0));
+    var saltou = el._d !== undefined && Math.abs(d - el._d) > 3;
+    if (primeira || saltou) el.style.transition = "none";
+    el.style.transform = "translateX(calc(-50% + " + d + " * var(--w) * 0.82)) scale(" + escala + ")";
+    el.style.opacity = opac;
+    el.style.zIndex = 10 - a;
+    el.style.pointerEvents = a > 2 ? "none" : "auto";
+    el.classList.toggle("ativo", a === 0);
+    el._d = d;
+    if (primeira || saltou) { void el.offsetWidth; el.style.transition = ""; }
+   });
+   pontos.forEach(function(p, i){ p.classList.toggle("on", i === atual); });
+  }
+
+  function ir(i){ atual = ((i % n) + n) % n; posicionar(false); }
+
+  function iniciarAuto(){
+   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || n < 2) return;
+   timer = setInterval(function(){ ir(atual + 1); }, 4500);
+  }
+  function parar(){ clearInterval(timer); timer = null; }
+  function reiniciar(){ parar(); iniciarAuto(); }
+
+  document.getElementById("proxima").addEventListener("click", function(){ ir(atual + 1); reiniciar(); });
+  document.getElementById("anterior").addEventListener("click", function(){ ir(atual - 1); reiniciar(); });
+
+  pista.addEventListener("mouseenter", parar);
+  pista.addEventListener("mouseleave", reiniciar);
+  document.addEventListener("visibilitychange", function(){ document.hidden ? parar() : reiniciar(); });
+
+  /* Deslizar com o dedo / mouse */
+  var x0 = null;
+  pista.addEventListener("pointerdown", function(e){ x0 = e.clientX; bloqueiaClique = false; });
+  pista.addEventListener("pointerup", function(e){
+   if (x0 === null) return;
+   var dx = e.clientX - x0; x0 = null;
+   if (Math.abs(dx) > 40) {
+    bloqueiaClique = true;
+    ir(dx < 0 ? atual + 1 : atual - 1);
+    reiniciar();
+    setTimeout(function(){ bloqueiaClique = false; }, 50);
+   }
+  });
+  pista.addEventListener("pointercancel", function(){ x0 = null; });
+
+  posicionar(true);
+  iniciarAuto();
+ }
+})();
+
+/* Nome do logo aparecendo letra por letra */
+document.querySelectorAll(".letras").forEach(function(el){
+ var inicio = parseFloat(el.getAttribute("data-inicio")) || 0;
+ var txt = el.textContent;
+ el.setAttribute("aria-label", txt);
+ el.innerHTML = txt.split("").map(function(c, i){
+  return '<span class="letra" aria-hidden="true" style="animation-delay:' + (inicio + i * 0.08).toFixed(2) + 's">' + c + '</span>';
+ }).join("");
+});
+
+document.getElementById("ano").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
